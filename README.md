@@ -1,10 +1,10 @@
 # Java Developer Internship at Codtech IT Solutions 👨‍💻
-**NAME:** Prithwin V P
-**COMPANY:** CODTECH IT SOLUTIONS
-**DURATION:** JUNE TO JULY 2024
-**ID:** CT04JP2302
-**DOMAIN:** JAVA PROGRAMMING
-**MENTOR:** Sravani Gouni
+ **NAME:** Prithwin V P
+ **COMPANY:** CODTECH IT SOLUTIONS
+ **DURATION:** JUNE TO JULY 2024
+ **ID:** CT04JP2302
+ **DOMAIN:** JAVA PROGRAMMING
+ **MENTOR:** Sravani Gouni
 
 
 
