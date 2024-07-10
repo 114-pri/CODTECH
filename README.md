@@ -29,7 +29,10 @@ This Java program is designed to track and manage student grades, demonstrating 
            The GradeManagementSystem class manages students and their grades, using a list to store the students. It provides methods to create new students and 
     retrieve students by name. Additionally, it contains the main method to run the grade management system.
 4.  **Main Method:**
-.          Provides a simple text-based user interface for interacting with the grade management system.
+           Provides a simple text-based user interface for interacting with the grade management system.
+
+5.  **Conclusion:**                                                                                                                                                 
+           This program illustrates the use of object-oriented principles, effective user interaction through console input, and basic data processing and validation. It is a comprehensive demonstration of core Java programming skills suitable for an internship submission.    
 
 
 
