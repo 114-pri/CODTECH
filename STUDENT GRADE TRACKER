@@ -1,0 +1,230 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Class representing a grade for a subject or assignment
+class Grade {
+    private String subject;  // Subject or assignment name
+    private double score;    // Score received
+
+    // Constructor to initialize subject and score
+    public Grade(String subject, double score) {
+        this.subject = subject;
+        this.score = score;
+    }
+
+    // Getter method for subject
+    public String getSubject() {
+        return subject;
+    }
+
+    // Getter method for score
+    public double getScore() {
+        return score;
+    }
+
+    // Override toString method to display grade information
+    @Override
+    public String toString() {
+        return "Subject: " + subject + ", Score: " + score;
+    }
+}
+
+// Class representing a student
+class Student {
+    private String name;              // Student's name
+    private List<Grade> grades;       // List of grades for the student
+
+    // Constructor to initialize student name and grades list
+    public Student(String name) {
+        this.name = name;
+        this.grades = new ArrayList<>();
+    }
+
+    // Getter method for name
+    public String getName() {
+        return name;
+    }
+
+    // Method to add a grade to the student's grades list
+    public void addGrade(Grade grade) {
+        grades.add(grade);
+    }
+
+    // Getter method for grades list
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    // Method to calculate the average score of the student
+    public double calculateAverage() {
+        if (grades.isEmpty()) {
+            return 0.0;
+        }
+        double total = 0.0;  // Initialize total score
+        for (Grade grade : grades) {
+            total += grade.getScore();  // Sum up all scores
+        }
+        return total / grades.size();  // Calculate average
+    }
+
+    // Method to calculate the letter grade based on average score
+    public char calculateLetterGrade(double average) {
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+
+    // Method to calculate the GPA based on average score
+    public double calculateGPA(double average) {
+        if (average >= 90) {
+            return 4.0;
+        } else if (average >= 80) {
+            return 3.0;
+        } else if (average >= 70) {
+            return 2.0;
+        } else if (average >= 60) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+
+    // Override toString method to display student's overall grade information
+    @Override
+    public String toString() {
+        double average = calculateAverage();  // Calculate average score
+        char letterGrade = calculateLetterGrade(average);  // Determine letter grade
+        double gpa = calculateGPA(average);  // Determine GPA
+        return "Student: " + name + "\nAverage Score: " + average + "\nLetter Grade: " + letterGrade + "\nGPA: " + gpa;
+    }
+}
+
+// Class representing the grade management system
+public class GradeManagementSystem {
+    private List<Student> students;  // List of students
+
+    // Constructor to initialize the students list
+    public GradeManagementSystem() {
+        students = new ArrayList<>();
+    }
+
+    // Method to create a new student and add to the list
+    public void createStudent(String name) {
+        Student student = new Student(name); // Create new student object
+        students.add(student); // Add student to the list
+        System.out.println("Student created: " + student.getName()); // Confirm creation
+    }
+
+    // Method to retrieve a student by name
+    public Student getStudent(String name) {
+        for (Student student : students) {
+            if (student.getName().equalsIgnoreCase(name)) {
+                return student;
+            }
+        }
+        return null; // Return null if student not found
+    }
+
+    // Main method to run the grade management system
+    public static void main(String[] args) {
+        GradeManagementSystem gms = new GradeManagementSystem(); // Create grade management system object
+        Scanner scanner = new Scanner(System.in); // Scanner object for user input
+        boolean exit = false; // Flag to control the loop
+
+        // Loop to keep the program running until user decides to exit
+        while (!exit) {
+            // Display the menu options
+            System.out.println("\nStudent Grade Management System:");
+            System.out.println("1. Create Student");
+            System.out.println("2. Add Grade");
+            System.out.println("3. View Student Grades");
+            System.out.println("4. Calculate Average Grade");
+            System.out.println("5. Display Overall Grade");
+            System.out.println("6. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt(); // Read user's choice
+            scanner.nextLine();  // Consume newline
+
+            // Switch case to handle user's choice
+            switch (choice) {
+                case 1:
+                    // Case to create a new student
+                    System.out.print("Enter student name: ");
+                    String name = scanner.nextLine(); // Read student name
+                    gms.createStudent(name); // Create student
+                    break;
+                case 2:
+                    // Case to add a grade to a student
+                    System.out.print("Enter student name: ");
+                    String studentName = scanner.nextLine(); // Read student name
+                    Student studentToAddGrade = gms.getStudent(studentName); // Get student
+                    if (studentToAddGrade != null) {
+                        System.out.print("Enter subject: ");
+                        String subject = scanner.nextLine(); // Read subject
+                        System.out.print("Enter score: ");
+                        double score = scanner.nextDouble(); // Read score
+                        studentToAddGrade.addGrade(new Grade(subject, score)); // Add grade to student
+                        System.out.println("Grade added: " + subject + " - " + score); // Confirm addition
+                    } else {
+                        System.out.println("Student not found."); // Student not found
+                    }
+                    break;
+                case 3:
+                    // Case to view grades of a student
+                    System.out.print("Enter student name: ");
+                    String studentNameToView = scanner.nextLine(); // Read student name
+                    Student studentToView = gms.getStudent(studentNameToView); // Get student
+                    if (studentToView != null) {
+                        System.out.println("Grades for " + studentToView.getName() + ":");
+                        for (Grade grade : studentToView.getGrades()) {
+                            System.out.println(grade); // Display each grade
+                        }
+                    } else {
+                        System.out.println("Student not found."); // Student not found
+                    }
+                    break;
+                case 4:
+                    // Case to calculate the average grade of a student
+                    System.out.print("Enter student name: ");
+                    String studentNameToCalculate = scanner.nextLine(); // Read student name
+                    Student studentToCalculate = gms.getStudent(studentNameToCalculate); // Get student
+                    if (studentToCalculate != null) {
+                        double average = studentToCalculate.calculateAverage(); // Calculate average
+                        System.out.println("Average grade for " + studentToCalculate.getName() + ": " + average); // Display average
+                    } else {
+                        System.out.println("Student not found."); // Student not found
+                    }
+                    break;
+                case 5:
+                    // Case to display overall grade information of a student
+                    System.out.print("Enter student name: ");
+                    String studentNameToDisplay = scanner.nextLine(); // Read student name
+                    Student studentToDisplay = gms.getStudent(studentNameToDisplay); // Get student
+                    if (studentToDisplay != null) {
+                        System.out.println(studentToDisplay); // Display overall grade information
+                    } else {
+                        System.out.println("Student not found."); // Student not found
+                    }
+                    break;
+                case 6:
+                    // Case to exit the program
+                    exit = true; // Set exit flag to true
+                    break;
+                default:
+                    // Case for invalid choice
+                    System.out.println("Invalid choice."); // Display error message
+            }
+        }
+
+        scanner.close(); // Close the scanner
+    }
+}
