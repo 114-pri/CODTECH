@@ -9,6 +9,10 @@
 
 ## OVERVIEW OF STUDENT GRADE TRACKER
 
+
+This Java program is designed to track and manage student grades, demonstrating skills in object-oriented programming, user input handling, and basic data processing. The program allows users to input grades for different subjects or assignments, calculate the average grade, and display the overall grade along with additional information such as letter grades and GPA.
+
+
 1.  **Grade Class:**                                                                                                                                                  
          -> Represents a grade for a specific subject or assignment.                                                                                                
          -> Stores the subject name and the score received.                                                                                                         
